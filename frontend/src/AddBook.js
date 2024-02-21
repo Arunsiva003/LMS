@@ -23,7 +23,7 @@ const AddBook = () => {
       rating: parseInt(rating)
     };
 
-    axios.post('http://localhost:5000/books',newBook)
+    axios.post('https://lmsbackend-hgnr.onrender.com/books',newBook)
     .then((res)=>console.log("added"))
     .catch((err)=>console.log(err));
     // Clear input fields after submission

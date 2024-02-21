@@ -1,0 +1,60 @@
+/* Login Container */
+.login-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: 5%;
+    border: 2px solid #596162;
+    border-radius: 15px;
+    background-color: #343a40; /* Dark background color */
+    color: #fff; /* Text color */
+  }
+  
+  /* Form */
+  .login-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Form Group */
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  /* Input Fields */
+  .input-field {
+    width: 80%;
+    padding: 10px;
+    border: 2px solid #122427;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #495057; /* Dark gray background */
+    color: #fff; /* Text color */
+  }
+  
+  /* Login Button */
+  .login-button {
+    padding: 12px 24px;
+    background-color: #212e30; /* Dark blue */
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-button:hover {
+    background-color: #0b1618; /* Darker blue on hover */
+  }
+  
+  /* Register Link */
+  .register-link {
+    color: #17a2b8; /* Blue color for register link */
+    text-decoration: none;
+  }
+  
+  .register-link:hover {
+    text-decoration: underline; /* Underline on hover */
+  }
+  

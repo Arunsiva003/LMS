@@ -1,0 +1,48 @@
+/* Styles for the form container */
+.form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: 5%;
+    border: 2px solid #8e9292;
+    border-radius: 15px;
+    background-color: #343a40; /* Dark background color */
+    color: #fff; /* Text color */
+  }
+  
+  /* Styles for form labels */
+  .form-container label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  /* Styles for form inputs */
+  .form-container input[type="text"],
+  .form-container input[type="date"],
+  .form-container input[type="number"] {
+    width: 80%;
+    padding: 10px;
+    border: 2px solid #727e80;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #fff; /* Text color */
+    background-color: #495057; /* Input background color */
+    margin-bottom: 10px;
+  }
+  
+  /* Styles for submit button */
+  .form-container button[type="submit"] {
+    padding: 12px 24px;
+    background-color: #59696a; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .form-container button[type="submit"]:hover {
+    background-color: #2a3132; /* Hover background color */
+  }
+  

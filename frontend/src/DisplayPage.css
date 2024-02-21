@@ -1,70 +1,89 @@
 .book-list {
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-  }
   
-  .filters input {
-    margin-right: 10px;
-    margin-bottom: 10px;
-    background-color: #444;
-    color: #fff;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-  }
-  
-  table th, table td {
-    padding: 8px;
-    border: 1px solid #444;
-    text-align: left;
-  }
-  
-  .pagination {
-    display: flex;
-    margin-top: 20px;
-  }
-  
-  .pagination button {
-    padding: 8px 12px;
-    margin-right: 5px;
-    cursor: pointer;
-    background-color: #444;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-  }
-  button {
-    padding: 8px 12px;
-    margin-right: 5px;
-    cursor: pointer;
-    background-color: #444;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-  }
-  .pagination span {
-    padding: 8px 12px;
-    background-color: #555;
-    color: #fff;
-    border-radius: 5px;
-  }
+  background-color: rgba(0,0,0,0.4);
+  color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  margin: 0 auto;
+  margin-top:10px;
+  width: 90%;
+  max-width: 900px;
+  margin-top: 50px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
 
-  .submit-button{
-    padding: 12px 24px;
-    background-color: #59696a; /* Button background color */
-    color: #fff; /* Button text color */
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
+.filters {
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.filters input {
+  margin: 5px;
+  background-color: #444;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+table th, table td {
+  padding: 10px;
+  border: 1px solid #444;
+  text-align: left;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination button, .submit-button {
+  padding: 6px 14px;
+  margin:2px;
+  background-color: #59696a; /* Button background color */
+  color: #fff; /* Button text color */
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button{
+  padding: 6px 14px;
+  margin:2px;
+  background-color: #59696a; /* Button background color */
+  color: #fff; /* Button text color */
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pagination span {
+  padding: 6px 14px;
+  background-color: #555;
+  color: #fff;
+  border-radius: 8px;
+}
+
+.pagination button:hover, .submit-button:hover {
+  background-color: #485b5c; /* Darker background color on hover */
+}

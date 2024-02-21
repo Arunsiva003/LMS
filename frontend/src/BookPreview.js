@@ -24,12 +24,15 @@ const BookPreview = () => {
     <div className="book-preview-container">
       {book ? (
         <>
-          <h2 className="book-title">{book.book_title}</h2>
-          <p className="book-author">Author: {book.author}</p>
-          <div className="book-content">{book.book_preview}</div>
+          <h1 className="book-title">{book.book_title}</h1>
+          <p className="book-author">By {book.author}</p>
+          <div className="book-content">
+            <h2 className="summary-heading">Summary</h2>
+            <p className="summary">{book.book_preview}</p>
+          </div>
         </>
       ) : (
-        <p>Loading...</p>
+        <p className="loading-text">Loading...</p>
       )}
     </div>
   );

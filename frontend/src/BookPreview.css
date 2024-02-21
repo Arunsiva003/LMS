@@ -2,44 +2,43 @@
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #fff;
+    background-color: rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
   .book-title {
-    font-size: 24px;
+    font-size: 36px;
+    text-align: center;
     margin-bottom: 10px;
   }
   
   .book-author {
-    font-size: 16px;
-    color: #666;
+    font-size: 18px;
+    color: #dcd8d8;
+    text-align: right;
     margin-bottom: 20px;
   }
   
   .book-content {
+    padding: 20px 0;
+  }
+  
+  .summary-heading {
+    font-size: 24px;
+    color: #eee7e7;
+    margin-bottom: 10px;
+  }
+  
+  .summary {
     font-size: 18px;
-    line-height: 1.5;
+    line-height: 1.6;
+    color: #ded5d5;
   }
   
   .loading-text {
     font-size: 18px;
     text-align: center;
     color: #666;
-  }
-  
-  @media screen and (max-width: 768px) {
-    .book-preview-container {
-      padding: 10px;
-    }
-  
-    .book-title {
-      font-size: 20px;
-    }
-  
-    .book-content {
-      font-size: 16px;
-    }
   }
   

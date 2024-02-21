@@ -130,7 +130,7 @@ const BookList = () => {
               <td>{formatDate(book.publish_date)}</td>
               <td>{book.count}</td>
               <td>{book.rating}</td>
-              <button onClick={()=>navigate(`/bookpreview/${index+1}`)}className='button'>View Book</button>
+              <button onClick={()=>navigate(`/bookpreview/${index+1}`)}className='button'>View Summary</button>
             </tr>
           ))}
         </tbody>

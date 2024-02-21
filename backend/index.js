@@ -10,10 +10,10 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const db = mysql.createConnection({
-  host: 'b5jp95kgcuf2cbvjobok-mysql.services.clever-cloud.com',
-  user: 'u1jkxmf7bmdsen5r',
-  password: 'wVBATFbynpeBCiqBaFLV',
-  database: 'b5jp95kgcuf2cbvjobok'
+  host: process.env.HOST,
+  user: process.env.USER,
+  password: process.env.PASSWORD,
+  database: process.env.DATABASE,
 });
 
 db.connect((err) => {
@@ -23,6 +23,22 @@ db.connect((err) => {
   console.log('MySQL connected');
 });
 
+app.get('/book_previews/:id', (req, res) => {
+  const { id } = req.params;
+  const q = 'SELECT id, book_id, book_title, author, LEFT(book_content, 100) AS book_preview FROM book_preview WHERE id = ?';
+  db.query(q, [id], (err, rows) => {
+      if (err) {
+          console.log(err);
+          res.status(500).json({ message: 'Internal Server Error' });
+          return;
+      }
+      if (rows.length === 0) {
+          res.status(404).json({ message: 'Book preview not found' });
+          return;
+      }
+      res.status(200).json(rows[0]);
+  });
+});
 
 app.get('/books',(req,res)=>{
     const q = 'select * from books';

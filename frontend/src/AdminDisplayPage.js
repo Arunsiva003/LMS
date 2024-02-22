@@ -14,10 +14,13 @@ const AdminBookList = () => {
       subject: '',
       publish_date: ''
     });
+    const [mostVisitedBooks, setMostVisitedBooks] = useState([]);
+    const [showModal, setShowModal] = useState(false);
   
     useEffect(() => {
       // Fetch books from the backend
       fetchBooks();
+      fetchMostVisitedBooks();
     }, []);
   
     const fetchBooks = async () => {
@@ -67,12 +70,28 @@ const AdminBookList = () => {
     pageNumbers.push(i);
   }
 
+  
+
+  
+  const fetchMostVisitedBooks = async () => {
+    try {
+        const response = await axios.get('https://lmsbackend-hgnr.onrender.com/books/top');
+        const data = response.data;
+        setMostVisitedBooks(data);
+    } catch (error) {
+        console.error('Error fetching most visited books:', error);
+    }
+};
   const formatDate = (dateString) => {
       console.log("date:",dateString)
     if (!dateString) return ''; // Handle undefined case
     const date = new Date(dateString.replace('Z', ''));
     return date.toLocaleDateString('en-US');
   };
+
+  const toggleModal = () => {
+    setShowModal(!showModal);
+};
   
   return (
     <div className="book-list">
@@ -150,6 +169,50 @@ const AdminBookList = () => {
       </div>
 
       <button onClick={()=>navigate("/adminbooks")} className="submit-button">Add Book</button>
+    
+    
+      <button onClick={toggleModal} className="view-most-visited-button">
+                View Most Visited Books
+            </button>
+
+            {/* Modal */}
+            {showModal && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <span className="close" onClick={toggleModal}>
+                            &times;
+                        </span>
+                        <h2>Most Visited Books</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Author</th>
+                                    <th>Subject</th>
+                                    <th>Publish Date</th>
+                                    <th>Count</th>
+                                    <th>Rating</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {mostVisitedBooks.map((book, index) => (
+                                    <tr key={index}>
+                                        <td>{book.title}</td>
+                                        <td>{book.author}</td>
+                                        <td>{book.subject}</td>
+                                        <td>{book.publish_date}</td>
+                                        <td>{book.count}</td>
+                                        <td>{book.rating}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            )}
+    
+    
+    
     </div>
   );
 };

@@ -130,7 +130,12 @@ const BookList = () => {
               <td>{formatDate(book.publish_date)}</td>
               <td>{book.count}</td>
               <td>{book.rating}</td>
-              <button onClick={()=>navigate(`/bookpreview/${index+1}`)}className='button'>View Summary</button>
+              <button onClick={()=>
+                {
+                  axios.put(`http://localhost:5000/books/visits/${index+1}`)
+                  navigate(`/bookpreview/${index+1}`)}
+              }
+                  className='button'>View Summary</button>
             </tr>
           ))}
         </tbody>

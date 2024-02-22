@@ -65,41 +65,56 @@ app.post('/books',(req,res)=>{
     })
 })
 
-app.post('/api/employees', (req, res) => {
-  const { name, employeeId, department, dob, gender, designation, salary } = req.body;
-  if (!name || !employeeId || !department || !dob || !gender || !designation || !salary) {
-    return res.status(400).json({ message: 'Incomplete data' });
-  }
-  if (name.length > 30 || salary.length > 8) {
-    return res.status(400).json({ message: 'Invalid data' });
-  }
-  const sql =
-    'INSERT INTO employees (name, employeeId, department, dob, gender, designation, salary) VALUES (?, ?, ?, ?, ?, ?, ?)';
-  db.query(
-    sql,
-    [name, employeeId, department, dob, gender, designation, salary],
-    (err, result) => {
-      if (err) {
-        console.log(err);
-        return res.status(500).json({ message: 'Failed to add employee' });
-      }
-      res.status(201).json({ message: 'Employee added successfully' });
+
+app.put('/books/visits/:book_id', (req, res) => {
+  const bookId = req.params.book_id;
+
+  // Check if the book_id exists
+  const selectQuery = 'SELECT * FROM books_visits WHERE book_id = ?';
+  db.query(selectQuery, [bookId], (error, results) => {
+    if (error) {
+      console.error('Error querying database:', error);
+      return res.status(500).json({ message: 'Internal server error' });
     }
-  );
+
+    if (results.length > 0) {
+      // Book_id exists, increment vis_cnt by one
+      const updateQuery = 'UPDATE books_visits SET vis_cnt = vis_cnt + 1 WHERE book_id = ?';
+      db.query(updateQuery, [bookId], (error, results) => {
+        if (error) {
+          console.error('Error updating visit count:', error);
+          return res.status(500).json({ message: 'Internal server error' });
+        }
+        res.send('Visit count incremented successfully');
+      });
+    } else {
+      // Book_id does not exist, insert with vis_cnt as 1
+      const insertQuery = 'INSERT INTO books_visits (book_id, vis_cnt) VALUES (?, 1)';
+      db.query(insertQuery, [bookId], (error, results) => {
+        if (error) {
+          console.error('Error inserting new record:', error);
+          return res.status(500).json({ message: 'Internal server error' });
+        }
+        res.send('New book_id inserted with visit count 1');
+      });
+    }
+  });
 });
 
 
-app.get('/api/employees',(req,res)=>{
-  const q = 'select * from employees';
-  db.query(q,(err,result)=>{
-    if(err){
-      console.log(err);
-      return res.status(500).json({message:"failed to retrieve employees"});
-    }
-    res.status(201).json(result);
-  })
+app.get('/books/top', (req, res) => {
+  const query = 'SELECT book_id, vis_cnt FROM books_visits ORDER BY vis_cnt DESC LIMIT 5';
 
-})
+  db.query(query, (error, results) => {
+    if (error) {
+      console.error('Error querying database:', error);
+      return res.status(500).json({ message: 'Internal server error' });
+    }
+
+    res.json(results);
+  });
+});
+
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

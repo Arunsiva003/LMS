@@ -33,7 +33,7 @@ const AddBook = () => {
     setpublish_date('');
     setCount('');
     setRating('');
-    navigate('/');
+    // navigate('/');
   };
 
   return (
@@ -92,7 +92,11 @@ const AddBook = () => {
           required
         />
       </div>
+      <div style={{display:'flex', justifyContent:'space-around'}}>
       <button type="submit" className="submit-button">Add Book</button>
+
+      <button onClick={()=>navigate('/adminbooks')} className="submit-button">View Books</button>
+      </div>  
     </form>
   );
 };

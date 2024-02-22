@@ -3,7 +3,7 @@ import './DisplayPage.css';
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom'
 
-const BookList = () => {
+const AdminBookList = () => {
     const navigate = useNavigate();
     const [books, setBooks] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
@@ -149,9 +149,9 @@ const BookList = () => {
         <button onClick={() => paginate(currentPage + 1)} disabled={currentPage === Math.ceil(books.length / booksPerPage)}>Next</button>
       </div>
 
-      {/* <button onClick={()=>navigate("/books")} className="submit-button">Add Book</button> */}
+      <button onClick={()=>navigate("/adminbooks")} className="submit-button">Add Book</button>
     </div>
   );
 };
 
-export default BookList;
+export default AdminBookList;

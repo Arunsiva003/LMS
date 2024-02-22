@@ -68,7 +68,7 @@ app.post('/books',(req,res)=>{
 
 app.put('/books/visits/:book_id', (req, res) => {
   const bookId = req.params.book_id;
-
+  console.log(bookId);
   // Check if the book_id exists
   const selectQuery = 'SELECT * FROM books_visits WHERE book_id = ?';
   db.query(selectQuery, [bookId], (error, results) => {
@@ -79,6 +79,7 @@ app.put('/books/visits/:book_id', (req, res) => {
 
     if (results.length > 0) {
       // Book_id exists, increment vis_cnt by one
+      console.log("incrementing");
       const updateQuery = 'UPDATE books_visits SET vis_cnt = vis_cnt + 1 WHERE book_id = ?';
       db.query(updateQuery, [bookId], (error, results) => {
         if (error) {
@@ -89,6 +90,8 @@ app.put('/books/visits/:book_id', (req, res) => {
       });
     } else {
       // Book_id does not exist, insert with vis_cnt as 1
+      console.log("adding");
+
       const insertQuery = 'INSERT INTO books_visits (book_id, vis_cnt) VALUES (?, 1)';
       db.query(insertQuery, [bookId], (error, results) => {
         if (error) {

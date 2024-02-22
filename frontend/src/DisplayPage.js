@@ -131,7 +131,7 @@ const BookList = () => {
               <td>{book.count}</td>
               <td>{book.rating}</td>
               <button onClick={()=>
-                  axios.put(`http://localhost:5000/books/visits/${index+1}`).then((res)=>navigate(`/bookpreview/${index+1}`))
+                  axios.put(`https://lmsbackend-hgnr.onrender.com/books/visits/${index+1}`).then((res)=>navigate(`/bookpreview/${index+1}`))
               }
               
                   className='button'>View Summary</button>

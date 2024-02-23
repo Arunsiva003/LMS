@@ -40,6 +40,35 @@ app.get('/book_previews/:id', (req, res) => {
   });
 });
 
+app.get('/books/top', (req, res) => {
+
+  const query = 'SELECT book_id, vis_cnt FROM books_visits ORDER BY vis_cnt DESC LIMIT 5';
+
+  db.query(query, (error, results) => {
+    if (error) {
+      console.error('Error querying database:', error);
+      return res.status(500).json({ message: 'Internal server error' });
+    }
+
+    const bookIds = results.map(result => result.book_id);
+
+    const booksQuery = 'SELECT * FROM books WHERE id IN (?)';
+    db.query(booksQuery, [bookIds], (error, bookResults) => {
+      if (error) {
+        console.error('Error querying database:', error);
+        return res.status(500).json({ message: 'Internal server error' });
+      }
+
+      const combinedResults = bookResults.map((book, index) => ({
+        ...book,
+        vis_cnt: results[index].vis_cnt 
+      }));
+      res.json(combinedResults);
+    });
+  });
+});
+
+
 app.get('/books',(req,res)=>{
     const q = 'select * from books';
     db.query(q,(err,result)=>{
@@ -105,18 +134,7 @@ app.put('/books/visits/:book_id', (req, res) => {
 });
 
 
-app.get('/books/top', (req, res) => {
-  const query = 'SELECT book_id, vis_cnt FROM books_visits ORDER BY vis_cnt DESC LIMIT 5';
 
-  db.query(query, (error, results) => {
-    if (error) {
-      console.error('Error querying database:', error);
-      return res.status(500).json({ message: 'Internal server error' });
-    }
-
-    res.json(results);
-  });
-});
 
 
 app.listen(port, () => {

@@ -77,7 +77,9 @@ const AdminBookList = () => {
     try {
         const response = await axios.get('https://lmsbackend-hgnr.onrender.com/books/top');
         const data = response.data;
+        console.log("in response:",response.data)
         setMostVisitedBooks(data);
+        console.log("set data:", mostVisitedBooks);
     } catch (error) {
         console.error('Error fetching most visited books:', error);
     }

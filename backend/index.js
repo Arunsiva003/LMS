@@ -7,7 +7,11 @@ const cors = require('cors');
 const port = 5000;
 
 app.use(bodyParser.json());
-app.use(cors());
+var corsOptions = {
+  origin: '*',
+  optionsSuccessStatus: 200,
+}
+app.use(cors(corsOptions));
 
 const db = mysql.createConnection({
   host: process.env.HOST,
